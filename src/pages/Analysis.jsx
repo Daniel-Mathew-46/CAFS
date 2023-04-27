@@ -21,7 +21,7 @@ const Analysis = () => {
   return (
     <div className="flex flex-row h-screen w-screen overflow-hidden">
       <Sidebar />
-      <div className="flex-1">
+      <div className="flex-1 overflow-scroll">
         <Header headerTitle={"Analysis"} showButton={true} />
         <SubHeader headerTitle={"Analysis".toUpperCase()} />
         <DescriptionText descrText={"Select a job to analyze"} />

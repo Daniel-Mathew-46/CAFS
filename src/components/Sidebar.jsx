@@ -6,7 +6,7 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 import { AiFillFileExcel } from "react-icons/ai";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom"; 
 
 const Sidebar = () => {
   const { pathname } = useLocation();

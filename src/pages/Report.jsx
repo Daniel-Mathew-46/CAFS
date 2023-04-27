@@ -6,6 +6,7 @@ import SubHeader from "../components/SubHeader";
 import DescriptionText from "../components/DescriptionText";
 import ListMenu from "../components/ListMenu";
 import CustomButton from "../components/CustomButton";
+import DataTable from "../components/DataTable";
 
 const Report = () => {
   const jobs = [
@@ -26,6 +27,12 @@ const Report = () => {
         <DescriptionText descrText={"Select a job to print report"} />
         <div className="flex mt-3 flex-row justify-start items-center">
           <ListMenu selected={selected} setSelected={setSelected} jobs={jobs} />
+        </div>
+        <div className="flex flex-col mt-10">
+          <DescriptionText
+            descrText={`Reports for ${selected?.name.toUpperCase()} Job`}
+          />
+          <DataTable />
         </div>
       </div>
     </div>
