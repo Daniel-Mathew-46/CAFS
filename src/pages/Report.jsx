@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ReactToPrint from "react-to-print";
-import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
 import SubHeader from "../components/SubHeader";
 import DescriptionText from "../components/DescriptionText";
@@ -16,7 +15,7 @@ const Report = () => {
     { name: "Senior Frontend Developer" },
     { name: "Backend Developer" },
     { name: "Cloud Engineer" },
-    { name: "Accountant Manager" }, 
+    { name: "Accountant Manager" },
   ];
   const [selected, setSelected] = useState(jobs[0]);
   return (
@@ -34,6 +33,9 @@ const Report = () => {
             descrText={`Reports for ${selected?.name.toUpperCase()} Job`}
           />
           <DataTable />
+        </div>
+        <div className="items-center justify-center w-full">
+          <CustomButton btnText={"Print"} onClick={() => alert("Printing!")} />
         </div>
       </div>
     </div>

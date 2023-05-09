@@ -1,14 +1,13 @@
 import React from "react";
 import { useState } from "react";
-import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
 import SubHeader from "../components/SubHeader";
+import SidebarComponent from "../components/SidebarComponent";
 import { FaFolder } from "react-icons/fa";
 import CustomButton from "../components/CustomButton";
-import SideBarComponent from "../components/SidebarComponent";
 // import ApiManager from "../constants/ApiManager";
 import axios from "axios";
-import SidebarComponent from "../components/SidebarComponent";
+
 function CreateJob() {
   const [jobtitle, setjobtitle] = useState("");
   const [jobrequirements, setjobrequirements] = useState("");
@@ -18,7 +17,7 @@ function CreateJob() {
     // using setCVFiles to set the files in the cvFiles state variable
     let files = e.target.files;
     setCVFiles([...files]);
- }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,13 +33,13 @@ function CreateJob() {
       // get the name of the files and push them to the files array
       // users can also get files content, convert it to blob format and send it to the backend
       for (let file of uploadedFiles) {
-         files.push({ name: file.name });
+        files.push({ name: file.name });
       }
       let fData = new FormData();
-      console.log(files)
+      console.log(files);
       fData.append("jobtitle", jobtitle);
       fData.append("jobrequirements", jobrequirements);
-      fData.append("cvfiles", JSON.stringify({files: files}));
+      fData.append("cvfiles", JSON.stringify({ files: files }));
       axios
         .post(url, fData)
         .then((response) => alert(response.data))
