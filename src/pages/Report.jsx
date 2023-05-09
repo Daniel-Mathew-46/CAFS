@@ -28,6 +28,15 @@ const Report = () => {
         <div className="flex mt-3 flex-row justify-start items-center">
           <ListMenu selected={selected} setSelected={setSelected} jobs={jobs} />
         </div>
+        <div className="flex flex-col mt-10">
+          <DescriptionText
+            descrText={`Reports for ${selected?.name.toUpperCase()} Job`}
+          />
+          <DataTable />
+        </div>
+        <div className="items-center justify-center w-full">
+          <CustomButton btnText={"Print"} onClick={() => alert("Printing!")} />
+        </div>
       </div>
     </div>
   );
