@@ -14,8 +14,8 @@ function App() {
   return (
     <div className="container">
       {/* <Login /> */}
-      {/* <Dashboard /> */}
-      <CreateJob />
+      <Dashboard />
+      {/* <CreateJob /> */}
     </div>
   );
 }

@@ -6,6 +6,7 @@ import ListMenu from "../components/ListMenu";
 import CustomButton from "../components/CustomButton";
 import DescriptionText from "../components/DescriptionText";
 import DataTable from "../components/DataTable";
+import SidebarComponent from "../components/SidebarComponent";
 
 const Analysis = () => {
   const jobs = [
@@ -20,7 +21,7 @@ const Analysis = () => {
 
   return (
     <div className="flex flex-row h-screen w-screen overflow-hidden">
-      <Sidebar />
+      <SidebarComponent />
       <div className="flex-1 overflow-scroll">
         <Header headerTitle={"Analysis"} showButton={true} />
         <SubHeader headerTitle={"Analysis".toUpperCase()} />
