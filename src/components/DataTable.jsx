@@ -8,7 +8,7 @@ const DataTable = () => {
       "Candidate Name": "Bright Augustino",
       Email: "bightaugustino@gmaill.com",
       Phone: "0548874940",
-      Resume: <FaFilePdf size={20} className=" text-sky-800" />,
+      Resume: <FaFilePdf size={20} />,
       Rank: "70%",
     },
     {
@@ -16,7 +16,7 @@ const DataTable = () => {
       "Candidate Name": "Daniel Mathew",
       Email: "dannymatty@gmaill.com",
       Phone: "0548858949",
-      Resume: <FaFilePdf size={20} className=" text-sky-800" />,
+      Resume: <FaFilePdf size={20} />,
       Rank: "60%",
     },
     {
@@ -24,7 +24,7 @@ const DataTable = () => {
       "Candidate Name": "Innocent Masuki",
       Email: "InnoMasuki@gmaill.com",
       Phone: "0548874940",
-      Resume: <FaFilePdf size={20} className=" text-sky-800" />,
+      Resume: <FaFilePdf size={20} />,
       Rank: "59%",
     },
     {
@@ -32,7 +32,7 @@ const DataTable = () => {
       "Candidate Name": "Zaidu Nyoni",
       Email: "zaidunyoni@gmaill.com",
       Phone: "0548874940",
-      Resume: <FaFilePdf size={20} className=" text-sky-800" />,
+      Resume: <FaFilePdf size={20} />,
       Rank: "57.5%",
     },
     {
@@ -40,7 +40,7 @@ const DataTable = () => {
       "Candidate Name": "Hassan Juma",
       Email: "jumahassan@gmaill.com",
       Phone: "0548874940",
-      Resume: <FaFilePdf size={20} className=" text-sky-800" />,
+      Resume: <FaFilePdf size={20} />,
       Rank: "55%",
     },
     {
@@ -48,7 +48,7 @@ const DataTable = () => {
       "Candidate Name": "Giddey Rompson",
       Email: "rompsongiddey@gmaill.com",
       Phone: "0548878485",
-      Resume: <FaFilePdf size={20} className=" text-sky-800" />,
+      Resume: <FaFilePdf size={20} />,
       Rank: "52%",
     },
     {
@@ -56,7 +56,7 @@ const DataTable = () => {
       "Candidate Name": "Aisha Ramadhan",
       Email: "ramadhanaisha@gmaill.com",
       Phone: "0548874940",
-      Resume: <FaFilePdf size={20} className=" text-sky-800" />,
+      Resume: <FaFilePdf size={20} />,
       Rank: "51%",
     },
     {
@@ -64,7 +64,7 @@ const DataTable = () => {
       "Candidate Name": "Muko Likanga",
       Email: "likangaMuko@gmaill.com",
       Phone: "0548874940",
-      Resume: <FaFilePdf size={20} className=" text-sky-800" />,
+      Resume: <FaFilePdf size={20} />,
       Rank: "50%",
     },
     {
@@ -72,7 +72,7 @@ const DataTable = () => {
       "Candidate Name": "Jone Doe",
       Email: "johndoe@gmaill.com",
       Phone: "0548874940",
-      Resume: <FaFilePdf size={20} className=" text-sky-800" />,
+      Resume: <FaFilePdf size={20} />,
       Rank: "48%",
     },
     {
@@ -80,7 +80,7 @@ const DataTable = () => {
       "Candidate Name": "Diana Anne",
       Email: "dianaanne@gmaill.com",
       Phone: "0548874940",
-      Resume: <FaFilePdf size={20} className=" text-sky-800" />,
+      Resume: <FaFilePdf size={20} />,
       Rank: "47%",
     },
     // {
@@ -102,7 +102,7 @@ const DataTable = () => {
   ];
   return (
     <div className="bg-white mt-5 px-12 pb-3 rounded-sm border-gray-200 flex-1">
-      <table className="w-[65rem] table-auto border-collapse border-transparent border-spacing-10 border-slate-500">
+      <table className="h-[25rem] w-[65rem] table-auto border-collapse border-transparent border-spacing-10 border-slate-500">
         <thead>
           <tr className="font-inter text-gray-500 font-semibold">
             <td>No</td>
@@ -117,15 +117,15 @@ const DataTable = () => {
           {data.map((item, index) => (
             <tr
               key={`Cand-${index + 1}`}
-              className={`py-12 font-inter rounded-sm content-center ${
-                index % 2 == 0 ? "bg-slate-500" : ""
+              className={`py-12 px font-inter rounded-sm content-center ${
+                index % 2 == 0 ? "font-inter bg-opacity-40 bg-slate-500" : ""
               } `}
             >
               <td>{index + 1}</td>
               <td>{item["Candidate Name"]}</td>
               <td>{item.Email}</td>
               <td>{item.Phone}</td>
-              <td className=" self-center">
+              <td className="mx-auto text-sky-800">
                 <a href="#">{item.Resume}</a>
               </td>
               <td>{item.Rank}</td>
