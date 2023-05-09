@@ -39,7 +39,7 @@ function CreateJob() {
       console.log(files);
       fData.append("jobtitle", jobtitle);
       fData.append("jobrequirements", jobrequirements);
-      fData.append("cvfiles", JSON.stringify({ files: files }));
+      fData.append("cvfiles", JSON.stringify(files));
       axios
         .post(url, fData)
         .then((response) => alert(response.data))
