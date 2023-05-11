@@ -1,14 +1,55 @@
 import React from "react";
-import Sidebar from "../components/Sidebar";
+import { useState } from "react";
 import Header from "../components/Header";
 import SubHeader from "../components/SubHeader";
+import SidebarComponent from "../components/SidebarComponent";
 import { FaFolder } from "react-icons/fa";
 import CustomButton from "../components/CustomButton";
+// import ApiManager from "../constants/ApiManager";
+import axios from "axios";
 
-const CreateJob = () => {
+function CreateJob() {
+  const [jobtitle, setjobtitle] = useState("");
+  const [jobrequirements, setjobrequirements] = useState("");
+  const [cvFiles, setCVFiles] = useState([]);
+
+  const changeFileInput = (e) => {
+    // using setCVFiles to set the files in the cvFiles state variable
+    let files = e.target.files;
+    setCVFiles([...files]);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (jobtitle.length === 0) {
+      alert("jobtitle has left Blank!");
+    } else if (jobrequirements.length === 0) {
+      alert("jobrequirements has left Blank!");
+    } else {
+      const url = "http://localhost/CAFS/sendData.php";
+
+      let uploadedFiles = [...cvFiles];
+      let files = [];
+      // get the name of the files and push them to the files array
+      // users can also get files content, convert it to blob format and send it to the backend
+      for (let file of uploadedFiles) {
+        files.push({ name: file.name });
+      }
+      let fData = new FormData();
+      console.log(files);
+      fData.append("jobtitle", jobtitle);
+      fData.append("jobrequirements", jobrequirements);
+      fData.append("cvfiles", JSON.stringify(files));
+      axios
+        .post(url, fData)
+        .then((response) => alert(response.data))
+        .catch((error) => alert(error));
+    }
+  };
+
   return (
-    <div className="flex flex-row h-screen w-screen overflow-hidden">
-      <Sidebar />
+    <div className="flex flex-row h-screen w-screen">
+      <SidebarComponent />
       <div className="flex-1 overflow-y-scroll md:overflow-hidden">
         <Header headerTitle={"Create Job"} />
         <SubHeader headerTitle={"Create New Job"} />
@@ -28,6 +69,7 @@ const CreateJob = () => {
                   type="text"
                   required
                   className="w-[20rem] border-2 rounded-lg border-gray-300 px-3 py-2 md:w-[30rem]"
+                  onChange={(e) => setjobtitle(e.target.value)}
                 />
               </div>
             </div>
@@ -46,6 +88,7 @@ const CreateJob = () => {
                   aria-multiline={true}
                   required
                   className="w-[20rem] h-[10rem] border-2 rounded-lg border-gray-300 px-3 py-2 md:w-[30rem]"
+                  onChange={(e) => setjobrequirements(e.target.value)}
                 />
                 <div className="w-[10rem] h-[10rem] bg-gray-200 rounded-lg mx-auto px-12 border-2 border-gray-300">
                   <div className="w-full h-full items-center justify-center rounded-lg border-dotted">
@@ -58,6 +101,8 @@ const CreateJob = () => {
                       name="cvs"
                       id="cvs"
                       className="absolute self-center w-[9rem] h-[9rem] opacity-0 z-10 cursor-pointer"
+                      multiple
+                      onChange={(e) => changeFileInput(e)}
                     />
 
                     <div className="items-center justify-center mt-7">
@@ -71,13 +116,13 @@ const CreateJob = () => {
               </div>
             </div>
             <div className="items-center justify-center">
-              <CustomButton btnText={"Save"} />
+              <CustomButton btnText={"Save"} onClick={(e) => handleSubmit(e)} />
             </div>
           </form>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default CreateJob;

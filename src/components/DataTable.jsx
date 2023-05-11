@@ -102,7 +102,7 @@ const DataTable = () => {
   ];
   return (
     <div className="bg-white mt-5 px-12 pb-3 rounded-sm border-gray-200 flex-1">
-      <table className="h-[25rem] w-[65rem] table-auto border-collapse border-transparent border-spacing-10 border-slate-500">
+      <table className="h-[25rem] w-[55rem] table-auto border-collapse border-transparent border-spacing-10 border-slate-500">
         <thead>
           <tr className="font-inter text-gray-500 font-semibold">
             <td>No</td>
