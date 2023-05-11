@@ -8,8 +8,9 @@ import {
 import { AiFillFileExcel } from "react-icons/ai";
 import { Link, useLocation } from "react-router-dom";
 
-const Sidebar = () => {
-  const { pathname } = useLocation();
+//This is a sidebar component
+const SidebarComponent = () => {
+    const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
   const menus = [
     {
@@ -24,7 +25,7 @@ const Sidebar = () => {
   return (
     <div
       className={`${
-        open ? "w-72" : "w-20"
+        open ? "w-60" : "w-20"
       } duration-300 h-screen p-5 pt-8 bg-dark-purple relative w-20`}
       onMouseOver={() => !open && setOpen(true)}
     >
@@ -36,7 +37,7 @@ const Sidebar = () => {
         }`}
         onClick={() => setOpen(!open)}
       /> */}
-      <div className="flex items-center gap-x-4">
+      <div className="flex items-center gap-x-4"> 
         <h1
           className={`font-inter text-white origin-left font-bold text-2xl duration-300`}
         >
@@ -85,7 +86,7 @@ const Sidebar = () => {
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default SidebarComponent
