@@ -1,26 +1,23 @@
 import React, { useState } from "react";
+
 import {
   FaChartLine,
   FaFileImport,
   FaChartPie,
   FaSignOutAlt,
 } from "react-icons/fa";
-import { AiFillFileExcel } from "react-icons/ai";
 import { Link, useLocation } from "react-router-dom";
-
-//This is a sidebar component
-const SidebarComponent = () => {
+useState;
+const AdminSidebarcomponent = () => {
   const { pathname } = useLocation();
   const [open, setOpen] = useState(true);
   const menus = [
     {
-      title: "Dashboard",
+      title: "Manage Users",
       icon: <FaChartLine color="#ffffff" size={20} />,
-      path: "/dashboard",
+      path: "/Admin/",
     },
-    { title: "Create Job", icon: <FaFileImport />, path: "/create-job" },
-    { title: "Analysis", icon: <FaChartPie />, path: "/analysis" },
-    { title: "Reports", icon: <AiFillFileExcel />, path: "/reports" },
+    { title: "Create User", icon: <FaFileImport />, path: "/admin/createuser" },
   ];
   return (
     <div
@@ -30,18 +27,18 @@ const SidebarComponent = () => {
       // onMouseOver={() => !open && setOpen(true)}
     >
       {/* <FaAngleLeft
-        size={20}
-        color="#ffffff"
-        className={`absolute rounded-full cursor-pointer -right-2 top-6 w-7 border-2 border-dark-purple ${
-          !open && "rotate-180"
-        }`}
-        onClick={() => setOpen(!open)}
-      /> */}
+          size={20}
+          color="#ffffff"
+          className={`absolute rounded-full cursor-pointer -right-2 top-6 w-7 border-2 border-dark-purple ${
+            !open && "rotate-180"
+          }`}
+          onClick={() => setOpen(!open)}
+        /> */}
       <div className="flex items-center gap-x-4">
         <h1
           className={`font-inter text-white origin-left font-bold text-2xl duration-300`}
         >
-          CAFS
+          CAFS ADMIN
         </h1>
       </div>
       <ul className="pt-8">
@@ -55,7 +52,7 @@ const SidebarComponent = () => {
             <Link
               to={menu.path}
               className="flex gap-x-4 items-center"
-              onClick={() => setOpen(false)}
+              //   onClick={() => setOpen(false)}
             >
               {menu.icon}
               <span
@@ -89,4 +86,4 @@ const SidebarComponent = () => {
   );
 };
 
-export default SidebarComponent;
+export default AdminSidebarcomponent;

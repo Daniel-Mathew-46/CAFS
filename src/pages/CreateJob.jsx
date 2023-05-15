@@ -26,20 +26,32 @@ function CreateJob() {
     } else if (jobrequirements.length === 0) {
       alert("jobtrequirements has left Blank!");
     } else {
-      const url = "http://localhost/CAFS/sendData.php";
-
-      let uploadedFiles = [...cvFiles];
-      let files = [];
-      // get the name of the files and push them to the files array
-      // users can also get files content, convert it to blob format and send it to the backend
-      for (let file of uploadedFiles) {
-        files.push({ name: file.name });
-      }
+      const url = "http://localhost/CAFS/CreateJob.php";
       let fData = new FormData();
-      console.log(files);
+      let selectedFiles = [...cvFiles];
+      let files = [];
+      let acceptableFilesType = [
+        "png",
+        "jpg",
+        "jpeg",
+        "pdf",
+        "msword",
+        "vnd.openxmlformats-officedocument.wordprocessingml.document",
+      ];
+
+      // get the name of the files and push them to the files array
+      for (let file of selectedFiles) {
+        let fileType = file.type.split("/")[1];
+        if (!acceptableFilesType.includes(fileType)) {
+          alert(`File ${file.name.split(".")[0]} is not acceptable. Check it!`);
+          return;
+        }
+        // console.log(file);
+        // files.push({ name: file.name, file });
+        fData.append("files[]", file);
+      }
       fData.append("jobtitle", jobtitle);
       fData.append("jobrequirements", jobrequirements);
-      fData.append("cvfiles", JSON.stringify(files));
       axios
         .post(url, fData)
         .then((response) => alert(response.data))

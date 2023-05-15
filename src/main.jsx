@@ -8,7 +8,14 @@ import {
   RouterProvider,
   Route,
 } from "react-router-dom";
-import { Analysis, CreateJob, Dashboard, Report } from "./pages";
+import {
+  Analysis,
+  CreateJob,
+  Dashboard,
+  Report,
+  AdminCreateUser,
+  AdminManagerUsers,
+} from "./pages";
 
 const router = createBrowserRouter([
   { path: "/", element: <App /> },
@@ -16,6 +23,8 @@ const router = createBrowserRouter([
   { path: "/create-job", element: <CreateJob /> },
   { path: "/analysis", element: <Analysis /> },
   { path: "/reports", element: <Report /> },
+  { path: "/admin/", element: <AdminManagerUsers /> },
+  { path: "/admin/createuser", element: <AdminCreateUser /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
