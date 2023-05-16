@@ -7,15 +7,22 @@ import { FaFolder } from "react-icons/fa";
 import CustomButton from "../components/CustomButton";
 // import ApiManager from "../constants/ApiManager";
 import axios from "axios";
+import ResponseModal from "../components/ResponseModal";
+import SubmitButton from "../components/SubmitButton";
 
 function CreateJob() {
   const [jobtitle, setjobtitle] = useState("");
   const [jobrequirements, setjobrequirements] = useState("");
   const [cvFiles, setCVFiles] = useState([]);
+  const [cvCount, setCVCount] = useState([]);
+  const [responseData, setResponseData] = useState("");
+  const [isModalOpen, setisModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const changeFileInput = (e) => {
     // using setCVFiles to set the files in the cvFiles state variable
     let files = e.target.files;
+    setCVCount(files.length);
     setCVFiles([...files]);
   };
 
@@ -29,7 +36,6 @@ function CreateJob() {
       const url = "http://localhost/CAFS/CreateJob.php";
       let fData = new FormData();
       let selectedFiles = [...cvFiles];
-      let files = [];
       let acceptableFilesType = [
         "png",
         "jpg",
@@ -52,12 +58,28 @@ function CreateJob() {
       }
       fData.append("jobtitle", jobtitle);
       fData.append("jobrequirements", jobrequirements);
+      setIsLoading(true);
       axios
         .post(url, fData)
-        .then((response) => alert(response.data))
-        .catch((error) => alert(error));
+        .then((response) => {
+          setResponseData(response.data);
+          setisModalOpen(true);
+          setjobtitle("");
+          setjobrequirements("");
+          setCVFiles([]);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          setIsLoading(false);
+          setResponseData(error);
+        });
     }
   };
+
+  function closeResponseModal() {
+    setisModalOpen(false);
+    setResponseData("");
+  }
 
   return (
     <div className="flex flex-row h-screen w-screen">
@@ -76,6 +98,7 @@ function CreateJob() {
               </label>
               <div className="mt-1">
                 <input
+                  value={jobtitle}
                   id="jobtitle"
                   name="jobtitle"
                   type="text"
@@ -94,6 +117,7 @@ function CreateJob() {
               </label>
               <div className="mt-1 flex flex-col space-y-5 md:space-y-0 md:space-x-5 md:flex-row">
                 <textarea
+                  value={jobrequirements}
                   id="jobtrequirements"
                   name="jobtrequirements"
                   type="textarea"
@@ -120,7 +144,11 @@ function CreateJob() {
                     <div className="items-center justify-center mt-7">
                       <FaFolder size={60} className=" text-gray-700" />
                       <p className=" font-inter text-center text-gray-700 text-sm">
-                        <span className="block">Upload CVs</span>
+                        <span className="block">
+                          {cvFiles.length > 0
+                            ? `Selected ${cvCount} Cvs.`
+                            : "Upload CVs"}
+                        </span>
                       </p>
                     </div>
                   </div>
@@ -128,10 +156,22 @@ function CreateJob() {
               </div>
             </div>
             <div className="items-center justify-center">
-              <CustomButton btnText={"Save"} onClick={(e) => handleSubmit(e)} />
+              {/* <CustomButton btnText={"Save"} onClick={(e) => handleSubmit(e)} /> */}
+              <SubmitButton
+                isLoading={isLoading}
+                text={"Save"}
+                handleOnSubmit={handleSubmit}
+              />
             </div>
           </form>
         </div>
+        {responseData && (
+          <ResponseModal
+            title={responseData}
+            isOpen={isModalOpen}
+            closeModal={closeResponseModal}
+          />
+        )}
       </div>
     </div>
   );

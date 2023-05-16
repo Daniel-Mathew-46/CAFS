@@ -10,8 +10,8 @@ import { Link, useLocation } from "react-router-dom";
 
 //This is a sidebar component
 const SidebarComponent = () => {
-    const { pathname } = useLocation();
-  const [open, setOpen] = useState(false);
+  const { pathname } = useLocation();
+  const [open, setOpen] = useState(true);
   const menus = [
     {
       title: "Dashboard",
@@ -27,7 +27,7 @@ const SidebarComponent = () => {
       className={`${
         open ? "w-60" : "w-20"
       } duration-300 h-screen p-5 pt-8 bg-dark-purple relative w-20`}
-      onMouseOver={() => !open && setOpen(true)}
+      // onMouseOver={() => !open && setOpen(true)}
     >
       {/* <FaAngleLeft
         size={20}
@@ -37,7 +37,7 @@ const SidebarComponent = () => {
         }`}
         onClick={() => setOpen(!open)}
       /> */}
-      <div className="flex items-center gap-x-4"> 
+      <div className="flex items-center gap-x-4">
         <h1
           className={`font-inter text-white origin-left font-bold text-2xl duration-300`}
         >
@@ -86,7 +86,7 @@ const SidebarComponent = () => {
         </Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SidebarComponent
+export default SidebarComponent;

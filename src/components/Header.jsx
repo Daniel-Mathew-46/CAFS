@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Header = ({ headerTitle, showButton }) => {
   return (
@@ -10,12 +11,12 @@ const Header = ({ headerTitle, showButton }) => {
       </div>
       <div className="px-7">
         {showButton && (
-          <button
+          <Link
             className="bg-black px-3 py-2 justify-center items-center rounded-md hidden md:block"
-            onClick={() => confirm("Hey there! Clicked!")}
+            to={"/create-job"}
           >
             <h2 className="text-white font-bold">Create Job</h2>
-          </button>
+          </Link>
         )}
       </div>
     </div>

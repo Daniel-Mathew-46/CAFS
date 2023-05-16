@@ -25,11 +25,10 @@ const Analysis = () => {
 
   useEffect(() => {
     axios
-        .get(url, fData)
-        .then((response) => setData(response.data))
-        .catch((error) => alert(error));
-  }, [])
-
+      .get(url, fData)
+      .then((response) => setData(response.data))
+      .catch((error) => alert(error));
+  }, []);
 
   return (
     <div className="flex flex-row h-screen w-screen overflow-hidden">
@@ -40,11 +39,14 @@ const Analysis = () => {
         <DescriptionText descrText={"Select a job to analyze"} />
         <div className="flex mt-3 flex-row justify-start items-center">
           <ListMenu selected={selected} setSelected={setSelected} jobs={jobs} />
-          <CustomButton btnText={"Analyze"} />
+          <CustomButton
+            btnText={"Analyze"}
+            onClick={() => alert("You pressed Analyze!")}
+          />
         </div>
         <strong className="font-inter font-semibold text-gray-800">
-        {data}
-      </strong>
+          {data}
+        </strong>
         <div className="flex flex-col mt-10">
           <DescriptionText
             descrText={`Analysis Results for ${selected?.name.toUpperCase()} Job`}
